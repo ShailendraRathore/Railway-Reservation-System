@@ -6,6 +6,7 @@ using namespace std;
 //Methods Declarations
 void login_main();
 void access_menu();
+void booking_log(string, string, string);
 
 //Classes
 class ticket
@@ -119,5 +120,11 @@ ticket::void book_ticket()
 	
 	date = get_date();
 	
+	booking_log(source,destination,date);
+}
+
+//Booking Log
+void booking_log(string source, string destination, string date)
+{
 	
 }
