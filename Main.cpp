@@ -1,5 +1,6 @@
 #include<iostream>
 #include<time.h>
+#include<string>
 
 using namespace std;
 //Methods Declarations
@@ -7,15 +8,22 @@ void login_main();
 void access_menu();
 
 //Classes
+class ticket
+{
+	void book_ticket();
+}
+
 class date
 {
-	void get_date()
+	string get_date()
 	{
-	int mm, dd, yyyy;
+	string s;
 	cout<<"Enter journey date in format: dd/mm/yyyy"<<endl;
-	scanf("%d/%d/%d", &mm, &dd, &yyyy);
+	getline(cin,s);
+	printf("%s",s.c_str());
+	return s;
 	}
-	String current_time()
+	string current_time()
 	{
 		time_t _tm =time(NULL );
 		struct tm * curtime = localtime ( &_tm );
@@ -93,5 +101,23 @@ void access_menu()
 		default:
 				cout<<"Invalid Option"<<endl;				 				
 	}
+	
+}
+
+//Book Ticket
+ticket::void book_ticket()
+{
+	sring destination;
+	string source;
+	string date;
+	
+	cout<<"Enter Source"<<endl;
+	cin>>source;
+	
+	cout<<"Enter Destination"<<endl;
+	cin>>destination;
+	
+	date = get_date();
+	
 	
 }
