@@ -1,9 +1,4 @@
-cout<<"Choose Your Option:"<<endl;
-cout<<"1. Book Ticket"<<endl;
-cout<<"2. Current Log"<<endl;
-cout<<"3. Cancel Ticket "<<endl;
-cout<<"4. Total Log"<<endl;
-cout<<"5. Sign Out"<<endl;
+
 
 void access_menu(int opt)
 {
