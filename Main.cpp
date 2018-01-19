@@ -1,6 +1,7 @@
 #include<iostream>
 #include<time.h>
 #include<string>
+#include<fstream>
 
 using namespace std;
 //Methods Declarations
@@ -126,5 +127,7 @@ ticket::void book_ticket()
 //Booking Log
 void booking_log(string source, string destination, string date)
 {
+	fstream fout;
+	fout.open("bookinglog.txt");
 	
 }
