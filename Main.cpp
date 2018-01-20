@@ -96,7 +96,7 @@ void access_menu()
 //Book Ticket
 void ticket::book_ticket()
 {
-	sring destination;
+	string destination;
 	string source;
 	string date;
 	
