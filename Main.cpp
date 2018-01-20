@@ -14,6 +14,7 @@ string current_time();
 //Classes
 class ticket
 {
+	public:
 	void book_ticket();
 };
 
@@ -67,7 +68,8 @@ void access_menu()
 	switch(opt)
 	{
 		case 1:
-			
+			ticket t;
+			t.book_ticket();
 				break;
 		
 		case 2:
@@ -91,7 +93,7 @@ void access_menu()
 }
 
 //Book Ticket
-ticket::void book_ticket()
+void ticket::book_ticket()
 {
 	sring destination;
 	string source;
@@ -113,7 +115,7 @@ string get_date()
 	{
 	string s;
 	cout<<"Enter journey date in format: dd/mm/yyyy"<<endl;
-	getline(cin,s);
+	scanf("%d/%d/%d");
 	printf("%s",s.c_str());
 	return s;
 	}
