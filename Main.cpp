@@ -2,6 +2,7 @@
 #include<time.h>
 #include<string>
 #include<fstream>
+#include<cstdlib>
 
 using namespace std;
 //Methods Declarations
@@ -134,5 +135,6 @@ void booking_log(string source, string destination, string date)
 	fstream fout;
 	fout.open("bookinglog.txt",ios::in|ios::app|ios::out);
 	fout<<source +" - "+ destination + " @ " + date + " " + current_time() + "\n";
+	fout<<number = rand() % 9000 + 1000<<endl;
 	
 }
