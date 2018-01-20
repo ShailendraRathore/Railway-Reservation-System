@@ -8,30 +8,14 @@ using namespace std;
 void login_main();
 void access_menu();
 void booking_log(string, string, string);
+string get_date();
+string current_time();
 
 //Classes
 class ticket
 {
 	void book_ticket();
-}
-
-class date
-{
-	string get_date()
-	{
-	string s;
-	cout<<"Enter journey date in format: dd/mm/yyyy"<<endl;
-	getline(cin,s);
-	printf("%s",s.c_str());
-	return s;
-	}
-	string current_time()
-	{
-		time_t _tm =time(NULL );
-		struct tm * curtime = localtime ( &_tm );
-		return asctime(curtime);
-	}
-}
+};
 
 //MAIN PROGRAM
 int main()
@@ -124,10 +108,29 @@ ticket::void book_ticket()
 	booking_log(source,destination,date);
 }
 
+//Get Date
+string get_date()
+	{
+	string s;
+	cout<<"Enter journey date in format: dd/mm/yyyy"<<endl;
+	getline(cin,s);
+	printf("%s",s.c_str());
+	return s;
+	}
+	
+//Current Time
+string current_time()
+	{
+		time_t _tm =time(NULL );
+		struct tm * curtime = localtime ( &_tm );
+		return asctime(curtime);
+	}
+	
 //Booking Log
 void booking_log(string source, string destination, string date)
 {
 	fstream fout;
-	fout.open("bookinglog.txt");
+	fout.open("bookinglog.txt",ios::in|ios::app|ios::out);
+	fout<<source +" - "+ destination + " @ " + date + " " + current_time() + "\n";
 	
 }
