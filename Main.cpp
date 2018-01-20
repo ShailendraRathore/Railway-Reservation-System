@@ -116,7 +116,7 @@ string get_date()
 	{
 	string s;
 	cout<<"Enter journey date in format: dd/mm/yyyy"<<endl;
-	scanf("%d/%d/%d");
+	scanf("%s",&s);
 	printf("%s",s.c_str());
 	return s;
 	}
