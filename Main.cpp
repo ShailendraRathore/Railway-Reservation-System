@@ -10,12 +10,13 @@ void login_menu();
 void access_menu();
 void loginf();
 void createuser();
-void booking_log(string, string, string);
+void booking_log(string, string);
 string get_date();
 string current_time();
 string username,usr,name,t;
-string password,passw,tid;
-
+string password,passw;
+int tid,a;
+char ch;
 //Classes
 class ticket
 {
@@ -109,7 +110,11 @@ void createuser()
 }
 //Main Menu
 void access_menu()
-{	int opt;
+{	
+    do
+    {
+	
+	int opt;
 	cout<<"Choose Your Option:"<<endl;
 	cout<<"1. Book Ticket"<<endl;
 	cout<<"2. Current Log"<<endl;
@@ -143,6 +148,9 @@ void access_menu()
 		default:
 				cout<<"Invalid Option"<<endl;				 				
 	}
+	cout<<"\nDo you want to continue:";
+	cin>>ch;
+   }while(ch=='y'||ch=='Y');
 	
 }
 
@@ -159,23 +167,26 @@ void ticket::book_ticket()
 	cout<<"Enter Destination"<<endl;
 	cin>>destination;
 	
-	date = get_date();
+//	date = get_date();
 	
-	booking_log(source,destination,date);
+	booking_log(source,destination);
 }
 void ticket::Cancel_ticket()
 
 	 {
-			    ifstream inFile("bookinglog.txt",ios::in);
+			       ifstream inFile("bookinglog.txt",ios::in);
 		            ofstream onFile("temp.txt",ios::out);
 
 		            cout<<"\nTicket ID:";
 		            cin>>tid;
 
-		           while(getline(inFile,t))
+		           while(fscanf(file,"%*d",&a)!=EOF())
 		             {
-		      	       if(tid!=t)
-		      		onFile<<t<<endl;
+		             	getline(inFile,t);
+		      	       if(tid!=a)
+		      		   {
+						 onFile<<t<<endl;
+		      	       }
 		             }
                            cout<<"Ticket cancelled successfully!";
                            inFile.close();
@@ -184,14 +195,14 @@ void ticket::Cancel_ticket()
                            rename("temp.txt","bookinglog.txt");
        }        
 //Get Date
-string get_date()
+/*string get_date()
 	{
 	string s;
 	cout<<"Enter journey date in format: dd/mm/yyyy"<<endl;
 	scanf("%s",&s);
 	printf("%s",s.c_str());
 	return s;
-	}
+	}*/
 	
 //Current Time
 string current_time()
@@ -202,11 +213,12 @@ string current_time()
 	}
 	
 //Booking Log
-void booking_log(string source, string destination, string date)
+void booking_log(string source, string destination)
 {
 	fstream fout;
 	fout.open("bookinglog.txt",ios::in|ios::app|ios::out);
-	fout<<source +" - "+ destination + " @ " + date + " " + current_time() + "\n";
-	fout<<rand() % 9000 + 1000<<endl;
+	fout<<rand() % 9000 + 1000<<" ";
+	fout<<source +" - "+ destination + " @ " +  " " + current_time() + "\n";
+	
 	
 }
