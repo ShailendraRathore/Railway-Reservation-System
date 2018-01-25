@@ -44,44 +44,45 @@ void login_menu()
 	
 	switch(opt)
 	{
-		case 1: {ifstream inFile;
+		case 1: {
+			ifstream inFile;
 		       inFile.open("Data.txt",ios::in);
 		       cout<<"\nEnter username:";
 		       cin>>username;
 		      
 
-               cout<<"\nEnter password:";
+                       cout<<"\nEnter password:";
 		       cin>>password;
 		      
-               while(!inFile.eof())
-               {
+                       while(!inFile.eof())
+                          { 
 
-               	inFile>>usr;
-               	inFile>>passw;         
+               	           inFile>>usr;
+                           inFile>>passw;         
 
-               	if(usr==username&&passw==password)
-               	access_menu();
-               }
+               	          if(usr==username&&passw==password)
+               	          access_menu();
+                          }
 
-                inFile.close();
+                       inFile.close();
 			}
 			
 				break;
 		
 		case 2:{
 			   ofstream outFile;
-		       outFile.open("Data.txt",ios::out|ios::app);
+		           outFile.open("Data.txt",ios::out|ios::app);
 
 		       
-		 cout<<"\nEnter username:";
-		       cin>>usr;
-		       outFile<<usr<<endl;
+		          cout<<"\nEnter username:";
+		          cin>>usr;
+		          outFile<<usr<<endl;
 
-               cout<<"\nEnter password:";
-		       cin>>passw;
-		       outFile<<passw<<endl;
+                          cout<<"\nEnter password:";
+		          cin>>passw;
+		          outFile<<passw<<endl;
 
-		       outFile.close();
+		          outFile.close();
 		 
 		 	  }	break;
 		 
@@ -115,23 +116,23 @@ void access_menu()
 		 		break;
 				 
 		case 3:
-		{
+		         {
 			    ifstream inFile("bookinglog.txt",ios::in);
-		        ofstream onFile("temp.txt",ios::out);
+		            ofstream onFile("temp.txt",ios::out);
 
-		       cout<<"\nTicket ID:";
-		       cin>>tid;
+		            cout<<"\nTicket ID:";
+		            cin>>tid;
 
-		      while(getline(inFile,t))
-		      {
-		      	if(tid!=t)
+		           while(getline(inFile,t))
+		             {
+		      	       if(tid!=t)
 		      		onFile<<t<<endl;
-		      }
-               cout<<"Ticket cancelled successfully!";
-               inFile.close();
-               onFile.close();
-               remove("bookinglog.txt");
-               rename("temp.txt","bookinglog.txt");
+		             }
+                           cout<<"Ticket cancelled successfully!";
+                           inFile.close();
+                           onFile.close();
+                           remove("bookinglog.txt");
+                           rename("temp.txt","bookinglog.txt");
 		        }
 		    
 				break;
