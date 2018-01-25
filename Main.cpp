@@ -6,8 +6,10 @@
 
 using namespace std;
 //Methods Declarations
-void login_main();
+void login_menu();
 void access_menu();
+void loginf();
+void createuser();
 void booking_log(string, string, string);
 string get_date();
 string current_time();
@@ -19,6 +21,7 @@ class ticket
 {
 	public:
 	void book_ticket();
+	void Cancel_ticket();
 };
 
 //MAIN PROGRAM
@@ -28,14 +31,14 @@ int main()
 	
 
 	login_menu();
-	access_menu();
-	
+	return 0;
 }
 
 //Login Menu Method
 void login_menu()
 {	
 	int opt;
+
 	cout<<"********\WELCOME TO IRCTC/********"<<endl;
 	cout<<"Choose Your Option:"<<endl;
 	cout<<"1. Login"<<endl;
@@ -44,33 +47,53 @@ void login_menu()
 	
 	switch(opt)
 	{
-		case 1: {
-			ifstream inFile;
+		case 1: loginf();
+			
+			
+			
+				break;
+		
+		case 2: createuser();
+			  
+		 
+		 	  	break;
+		 
+		 		
+		
+		default:
+				
+				cout<<"Invalid Option"; 		
+	}
+}
+
+void loginf()
+{
+	           ifstream inFile;
 		       inFile.open("Data.txt",ios::in);
 		       cout<<"\nEnter username:";
 		       cin>>username;
 		      
 
-                       cout<<"\nEnter password:";
+               cout<<"\nEnter password:";
 		       cin>>password;
 		      
-                       while(!inFile.eof())
-                          { 
+               while(!inFile.eof())
+                { 
 
-               	           inFile>>usr;
-                           inFile>>passw;         
+               	   inFile>>usr;
+                   inFile>>passw;         
 
-               	          if(usr==username&&passw==password)
-               	          access_menu();
-                          }
+               	   if(usr==username&&passw==password)
+               	   access_menu();
+                }
 
-                       inFile.close();
-			}
-			
-				break;
-		
-		case 2:{
-			   ofstream outFile;
+                inFile.close();
+}
+
+
+void createuser()
+{
+	               ofstream outFile;
 		           outFile.open("Data.txt",ios::out|ios::app);
 
 		       
@@ -83,17 +106,7 @@ void login_menu()
 		          outFile<<passw<<endl;
 
 		          outFile.close();
-		 
-		 	  }	break;
-		 
-		 		break;
-		
-		default:
-				
-				cout<<"Invalid Option"; 		
-	}
 }
-
 //Main Menu
 void access_menu()
 {	int opt;
@@ -116,24 +129,8 @@ void access_menu()
 		 		break;
 				 
 		case 3:
-		         {
-			    ifstream inFile("bookinglog.txt",ios::in);
-		            ofstream onFile("temp.txt",ios::out);
-
-		            cout<<"\nTicket ID:";
-		            cin>>tid;
-
-		           while(getline(inFile,t))
-		             {
-		      	       if(tid!=t)
-		      		onFile<<t<<endl;
-		             }
-                           cout<<"Ticket cancelled successfully!";
-                           inFile.close();
-                           onFile.close();
-                           remove("bookinglog.txt");
-                           rename("temp.txt","bookinglog.txt");
-		        }
+		        	ticket t1;
+			        t1.Cancel_ticket();
 		    
 				break;
 		
@@ -166,7 +163,26 @@ void ticket::book_ticket()
 	
 	booking_log(source,destination,date);
 }
+void ticket::Cancel_ticket()
 
+	 {
+			    ifstream inFile("bookinglog.txt",ios::in);
+		            ofstream onFile("temp.txt",ios::out);
+
+		            cout<<"\nTicket ID:";
+		            cin>>tid;
+
+		           while(getline(inFile,t))
+		             {
+		      	       if(tid!=t)
+		      		onFile<<t<<endl;
+		             }
+                           cout<<"Ticket cancelled successfully!";
+                           inFile.close();
+                           onFile.close();
+                           remove("bookinglog.txt");
+                           rename("temp.txt","bookinglog.txt");
+       }        
 //Get Date
 string get_date()
 	{
